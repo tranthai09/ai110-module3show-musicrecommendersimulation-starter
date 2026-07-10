@@ -29,6 +29,13 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
+The features each song has are the  identifiers (ID, title, artist), genre, mood, energy, tempo, valence, daceability, and acousticness.
+
+UserProfile stores the user's favorite genre, favorite modod, target energy, and whether they like acoustic songs or not (or if they prefer electronic songs).
+
+The Recommender needs to filter the songs and return a list of songs what score based on how close it is to the UserProfile or the user's preferences. For example, if the user's favorite genre matches with the current genre of the song, then we can return a 1 for the genre_score since it is matching with the user's favorite genre or else we would return false. This would also be done for the mood_score, energy_score, and acoustic_score. Then we would calculate the toal score by calculating a weighted average where each score is multiplied by the weight of how much each feature would matter (genre = 3, mood = 2, energy = 2, acoustic = 1 where genre is the heaviest and impactful weight). The weights are summed and divided by the sum of the weights (3 + 2 + 2 + 1 = 8). We would return the songs score by returning the toal for each song and the resons list of why each song is scored a certain way so that we can complete the explain_reccomendation function.
+
+To reccommend songs, we would first score every song based on how well it matches the User preferences (UserProfile) based of genre, mood and the features. Then we would add them up and find the weighted total to calculate the match percentage. Once every song has a total score from score_song function, we would just sort it by highest score first where the higher the score, the better the match. Then we would take the top few (k number of reccommendation) from the sorted list and these are the reccommended songs.
 ---
 
 ## Getting Started
