@@ -9,24 +9,32 @@ You will implement the functions in recommender.py:
 - recommend_songs
 """
 
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from recommender import load_songs, recommend_songs
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SONGS_CSV = os.path.join(PROJECT_ROOT, "data", "songs.csv")
 
 
 def main() -> None:
-    songs = load_songs("data/songs.csv") 
+    songs = load_songs(SONGS_CSV)
+    print(f"Loaded songs: {len(songs)}")
 
     # Starter example profile
     user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
 
     recommendations = recommend_songs(user_prefs, songs, k=5)
 
-    print("\nTop recommendations:\n")
-    for rec in recommendations:
-        # You decide the structure of each returned item.
-        # A common pattern is: (song, score, explanation)
-        song, score, explanation = rec
-        print(f"{song['title']} - Score: {score:.2f}")
-        print(f"Because: {explanation}")
+    print("\nTop Recommendations")
+    print("=" * 50)
+    for rank, (song, score, explanation) in enumerate(recommendations, start=1):
+        print(f"{rank}. {song['title']} - {song['artist']} (Score: {score:.2f})")
+        for reason in explanation.split(", "):
+            print(f"     - {reason}")
         print()
 
 

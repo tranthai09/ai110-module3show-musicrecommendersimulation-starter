@@ -104,6 +104,30 @@ Paste a sample of your recommender's output here as a text block so a reader can
 #   1. ...
 #   2. ...
 #   3. ...
+
+Loaded songs: 10
+
+Top Recommendations
+==================================================
+1. Sunrise City - Neon Echo (Score: 4.47)
+     - genre match (+2.0)
+     - mood match (+1.0)
+     - energy similarity (+1.47)
+
+2. Gym Hero - Max Pulse (Score: 3.30)
+     - genre match (+2.0)
+     - energy similarity (+1.30)
+
+3. Rooftop Lights - Indigo Parade (Score: 2.44)
+     - mood match (+1.0)
+     - energy similarity (+1.44)
+
+4. Night Drive Loop - Neon Echo (Score: 1.42)
+     - energy similarity (+1.42)
+
+5. Storm Runner - Voltline (Score: 1.33)
+     - energy similarity (+1.33)
+     
 ```
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
