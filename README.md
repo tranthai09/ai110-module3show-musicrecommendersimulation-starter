@@ -37,7 +37,25 @@ The Recommender needs to filter the songs and return a list of songs what score 
 
 To reccommend songs, we would first score every song based on how well it matches the User preferences (UserProfile) based of genre, mood and the features. Then we would add them up and find the weighted total to calculate the match percentage. Once every song has a total score from score_song function, we would just sort it by highest score first where the higher the score, the better the match. Then we would take the top few (k number of reccommendation) from the sorted list and these are the reccommended songs.
 
-We need both a scoring rule and a ranking rule to build a recommendation system because scoring has to happen first. We cannot rank songs without measuring the scores. Then they have to be tested separately and then we can add ranking rules and ranking turns the comparisons into an actual ordered reccommendation list. 
+### Algorithm Recipe (Finalized)
+
+Instead of a weighted average, the finalized recipe is an additive point system: points are only ever added (never subtracted), so every song's score is a simple, explainable running total.
+
+- **+2.0 points** if the song's genre matches the user's favorite genre.
+- **+1.0 point** if the song's mood matches the user's favorite mood.
+- **Up to +1.5 points** for energy similarity, scaled linearly: `1.5 * (1 - abs(song.energy - user.target_energy))`. A song with energy identical to the user's target earns the full 1.5; a song with maximally different energy (a difference of 1.0) earns 0.
+- **+0.5 points** if the user likes acoustic songs and the song's acousticness is above 0.6.
+
+This makes genre the dominant signal (2.0), energy the runner-up (up to 1.5), mood a moderate signal (1.0), and acoustic preference a minor tiebreaker (0.5). Each rule that fires also appends a plain-language reason (e.g., "Matches favorite genre (rock)") to a reasons list, which `explain_recommendation` uses to justify the pick.
+
+To recommend songs, `score_song` is run once per song to get a `(score, reasons)` pair, `recommend_songs` sorts all songs by score descending, and the top `k` are returned.
+
+We need both a scoring rule and a ranking rule to build a recommendation system because scoring has to happen first. We cannot rank songs without measuring the scores. Then they have to be tested separately and then we can add ranking rules, and ranking turns the comparisons into an actual ordered recommendation list.
+
+### Potential Biases
+
+This system likely over-prioritizes genre relative to mood, since a genre match alone (2.0) beats a mood match alone (1.0), even when the mood match is emotionally a much closer fit for the user. A song that misses genre entirely can also never out-rank a same-genre song unless it wins big on energy and mood combined, so users with eclectic or mood-first taste (rather than genre-loyal taste) may get systematically weaker recommendations from this weighting.
+
 ---
 
 ## Getting Started
