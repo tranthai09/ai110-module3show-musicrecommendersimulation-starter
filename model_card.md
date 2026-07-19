@@ -57,11 +57,11 @@ Prompts:
 - Did you add or remove data  
 - Are there parts of musical taste missing in the dataset  
 
-The catalog only has 10 songs. That's tiny — small enough that testing by hand and reading every row is easy, but too small to really show off a recommender.
+The catalog has 18 songs. That's still small — small enough that testing by hand and reading every row is easy, but not big enough to really show off a recommender at real-world scale.
 
-The genres are: pop, lofi, rock, ambient, jazz, synthwave, indie pop, and lofi again (two lofi songs). The moods are: happy, chill, intense, relaxed, moody, and focused. Most genres and moods only show up once or twice, so there is barely any overlap between songs.
+The genres are: pop (x2), lofi (x3), rock (x2), ambient, jazz, synthwave, indie pop, hip-hop, classical, metal, r&b, folk, edm, blues, and country. The moods are: happy (x3), chill (x3), intense (x2), relaxed, moody, focused, confident, peaceful, sensual, nostalgic, euphoric, and melancholy.
 
-I didn't add or remove any rows, I used the starter data as-is. Because the catalog is so small, whole chunks of musical taste are just missing. There's no metal, no classical, no hip-hop, and no truly sad or angry mood. If a user's taste doesn't match one of the exact labels already in the file, the system has nothing good to give them.
+I started with the original 10-song starter file and added 8 more songs (ids 11-18) to bring in genres and moods that were completely missing before, like hip-hop, classical, metal, folk, R&B, blues, country, and EDM, along with new moods like nostalgic and melancholy. That directly plugged some of the gaps I found earlier, but most genres still only have one or two songs, so there still isn't much real competition within most of them. If a user's taste doesn't match one of the exact labels already in the file, the system still has nothing good to give them.
 
 ---
 

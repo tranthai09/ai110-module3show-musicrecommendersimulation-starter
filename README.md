@@ -11,7 +11,15 @@ Your goal is to:
 - Evaluate what your system gets right and wrong
 - Reflect on how this mirrors real world AI recommenders
 
-Replace this paragraph with your own summary of what your version does.
+This version loads an 18-song catalog from a CSV, scores every song against a user's stated taste profile using an additive point system, and returns the top-k matches with plain-language reasons for each pick. It also documents what happens when that scoring logic gets pushed with contradictory, missing, or invalid preferences.
+
+---
+
+## How Real-World Recommenders Compare
+
+Real systems like Spotify or YouTube work on the same basic idea as this project, just with much richer data. They use **input data** — a song or video's own features (genre, tempo, audio fingerprint, topic tags) plus signals about how other users reacted to it (skip rate, watch time, likes). They combine that with **user preferences** — but instead of a user typing in "genre=pop, mood=happy" like this project does, real systems *infer* preferences from listening/watch history, search queries, and even the time of day. Finally there's **ranking/selection** — a model scores thousands or millions of candidates and returns a short ranked list, exactly like `recommend_songs` does here, just with a machine-learned scoring function instead of hand-written point rules.
+
+The key difference from this simulation: here, "user preferences" are explicit and typed in by hand, and "input data" is a small, clean CSV. In real systems, both are inferred from noisy behavioral signals at massive scale, which is also where a lot of the bias in real recommenders creeps in — e.g., a song that already has more plays looks more "relevant" to the ranking model, which can snowball into popularity bias, similar to how "Sunrise City" snowballs to the top of every happy/high-energy query in this project just because it's the only song sitting at that exact label intersection.
 
 ---
 
@@ -95,54 +103,8 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Sample Recommendation Output
 
-Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
-
 ```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
-
-Loaded songs: 10
-
-Top Recommendations
-==================================================
-1. Sunrise City - Neon Echo (Score: 4.47)
-     - genre match (+2.0)
-     - mood match (+1.0)
-     - energy similarity (+1.47)
-
-2. Gym Hero - Max Pulse (Score: 3.30)
-     - genre match (+2.0)
-     - energy similarity (+1.30)
-
-3. Rooftop Lights - Indigo Parade (Score: 2.44)
-     - mood match (+1.0)
-     - energy similarity (+1.44)
-
-4. Night Drive Loop - Neon Echo (Score: 1.42)
-     - energy similarity (+1.42)
-
-5. Storm Runner - Voltline (Score: 1.33)
-     - energy similarity (+1.33)
-
-```
-
-**Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
-
----
-
-## Experiments You Tried
-
-Use this section to document the experiments you ran. For example:
-
-- What happened when you changed the weight on genre from 2.0 to 0.5
-- What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
-
-Loaded songs: 10
+Loaded songs: 18
 
 Top Recommendations for 'High-Energy Pop' {'genre': 'pop', 'mood': 'happy', 'energy': 0.9}
 ==================================================
@@ -159,11 +121,46 @@ Top Recommendations for 'High-Energy Pop' {'genre': 'pop', 'mood': 'happy', 'ene
      - mood match (+1.0)
      - energy similarity (+1.29)
 
-4. Storm Runner - Voltline (Score: 1.48)
-     - energy similarity (+1.48)
+4. Backroad Anthem - Cedar & Bloom (Score: 2.05)
+     - mood match (+1.0)
+     - energy similarity (+1.05)
 
-5. Night Drive Loop - Neon Echo (Score: 1.27)
-     - energy similarity (+1.27)
+5. Storm Runner - Voltline (Score: 1.48)
+     - energy similarity (+1.48)
+```
+
+**Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
+
+---
+
+## Experiments You Tried
+
+Eight user profiles were run against the 18-song catalog: three "normal" tastes (High-Energy Pop, Chill Lofi, Deep Intense Rock) and five adversarial/edge-case profiles designed to try to break the scoring logic (conflicting mood, a genre that doesn't exist, a contradictory energy+acoustic combo, empty preferences, and an out-of-range energy value). Full output for each:
+
+```
+Loaded songs: 18
+
+Top Recommendations for 'High-Energy Pop' {'genre': 'pop', 'mood': 'happy', 'energy': 0.9}
+==================================================
+1. Sunrise City - Neon Echo (Score: 4.38)
+     - genre match (+2.0)
+     - mood match (+1.0)
+     - energy similarity (+1.38)
+
+2. Gym Hero - Max Pulse (Score: 3.46)
+     - genre match (+2.0)
+     - energy similarity (+1.46)
+
+3. Rooftop Lights - Indigo Parade (Score: 2.29)
+     - mood match (+1.0)
+     - energy similarity (+1.29)
+
+4. Backroad Anthem - Cedar & Bloom (Score: 2.05)
+     - mood match (+1.0)
+     - energy similarity (+1.05)
+
+5. Storm Runner - Voltline (Score: 1.48)
+     - energy similarity (+1.48)
 
 
 Top Recommendations for 'Chill Lofi' {'genre': 'lofi', 'mood': 'chill', 'energy': 0.35, 'likes_acoustic': True}
@@ -206,14 +203,15 @@ Top Recommendations for 'Deep Intense Rock' {'genre': 'rock', 'mood': 'intense',
      - mood match (+1.0)
      - energy similarity (+1.46)
 
-3. Sunrise City - Neon Echo (Score: 1.38)
+3. Iron Reckoning - Voltline (Score: 2.42)
+     - mood match (+1.0)
+     - energy similarity (+1.43)
+
+4. Pulse Overdrive - Neon Echo (Score: 1.47)
+     - energy similarity (+1.47)
+
+5. Sunrise City - Neon Echo (Score: 1.38)
      - energy similarity (+1.38)
-
-4. Rooftop Lights - Indigo Parade (Score: 1.29)
-     - energy similarity (+1.29)
-
-5. Night Drive Loop - Neon Echo (Score: 1.27)
-     - energy similarity (+1.27)
 
 
 Top Recommendations for 'Conflicting Energy/Mood' {'genre': 'pop', 'mood': 'sad', 'energy': 0.9}
@@ -229,31 +227,32 @@ Top Recommendations for 'Conflicting Energy/Mood' {'genre': 'pop', 'mood': 'sad'
 3. Storm Runner - Voltline (Score: 1.48)
      - energy similarity (+1.48)
 
-4. Rooftop Lights - Indigo Parade (Score: 1.29)
-     - energy similarity (+1.29)
+4. Pulse Overdrive - Neon Echo (Score: 1.47)
+     - energy similarity (+1.47)
 
-5. Night Drive Loop - Neon Echo (Score: 1.27)
-     - energy similarity (+1.27)
+5. Iron Reckoning - Voltline (Score: 1.43)
+     - energy similarity (+1.43)
 
 
 Top Recommendations for 'Nonexistent Genre' {'genre': 'death metal', 'mood': 'happy', 'energy': 0.5}
 ==================================================
-1. Rooftop Lights - Indigo Parade (Score: 2.11)
+1. Backroad Anthem - Cedar & Bloom (Score: 2.35)
+     - mood match (+1.0)
+     - energy similarity (+1.35)
+
+2. Rooftop Lights - Indigo Parade (Score: 2.11)
      - mood match (+1.0)
      - energy similarity (+1.11)
 
-2. Sunrise City - Neon Echo (Score: 2.02)
+3. Sunrise City - Neon Echo (Score: 2.02)
      - mood match (+1.0)
      - energy similarity (+1.02)
 
-3. Midnight Coding - LoRoom (Score: 1.38)
-     - energy similarity (+1.38)
+4. Velvet Whisper - Honey Static (Score: 1.42)
+     - energy similarity (+1.42)
 
-4. Focus Flow - LoRoom (Score: 1.35)
-     - energy similarity (+1.35)
-
-5. Coffee Shop Stories - Slow Stereo (Score: 1.30)
-     - energy similarity (+1.30)
+5. Wildflower Road - Cedar & Bloom (Score: 1.42)
+     - energy similarity (+1.42)
 
 
 Top Recommendations for 'Acoustic Headbanger' {'genre': 'rock', 'mood': 'intense', 'energy': 1.0, 'likes_acoustic': True}
@@ -263,19 +262,19 @@ Top Recommendations for 'Acoustic Headbanger' {'genre': 'rock', 'mood': 'intense
      - mood match (+1.0)
      - energy similarity (+1.36)
 
-2. Gym Hero - Max Pulse (Score: 2.40)
+2. Iron Reckoning - Voltline (Score: 2.42)
+     - mood match (+1.0)
+     - energy similarity (+1.42)
+
+3. Gym Hero - Max Pulse (Score: 2.40)
      - mood match (+1.0)
      - energy similarity (+1.40)
 
-3. Sunrise City - Neon Echo (Score: 1.23)
+4. Pulse Overdrive - Neon Echo (Score: 1.32)
+     - energy similarity (+1.32)
+
+5. Sunrise City - Neon Echo (Score: 1.23)
      - energy similarity (+1.23)
-
-4. Rooftop Lights - Indigo Parade (Score: 1.14)
-     - energy similarity (+1.14)
-
-5. Midnight Coding - LoRoom (Score: 1.13)
-     - energy similarity (+0.63)
-     - acoustic match (+0.5)
 
 
 Top Recommendations for 'Empty Preferences' {}
@@ -311,200 +310,27 @@ Top Recommendations for 'Out-of-Range Energy' {'genre': 'pop', 'mood': 'happy', 
      - mood match (+1.0)
      - energy similarity (+-4.86)
 
-4. Storm Runner - Voltline (Score: -4.63)
-     - energy similarity (+-4.63)
+4. Backroad Anthem - Cedar & Bloom (Score: -4.10)
+     - mood match (+1.0)
+     - energy similarity (+-5.10)
 
-5. Night Drive Loop - Neon Echo (Score: -4.88)
-     - energy similarity (+-4.88)
+5. Iron Reckoning - Voltline (Score: -4.57)
+     - energy similarity (+-4.57)
+```
 
+I also tried doubling the energy weight and halving the genre weight (genre `+2.0 → +1.0`, energy `1.5× → 3.0×`) to see if it would change which songs won. Surprisingly, it didn't reorder any of the top-5 lists above — only the score margins shifted. That told me the "same song wins" pattern is driven by the sparse, exact-match dataset (one song owning a rare label combination) rather than by the specific weight values. See `model_card.md`'s Evaluation section for the full pairwise comparison writeup, including a plain-language explanation of why "Gym Hero" keeps beating "Sunrise City" once mood stops being able to differentiate them.
 
 ---
 
 ## Limitations and Risks
 
-Summarize some limitations of your recommender.
+- **Exact-string genre/mood matching.** `"pop"` and `"indie pop"` are treated as completely unrelated, and moods like `"chill"` and `"relaxed"` get no partial credit for being similar. This means users with taste that spans adjacent labels get worse recommendations than users who happen to match a label exactly.
+- **The energy gap has no bounds-checking.** An out-of-range `energy` value (e.g., 5.0) isn't rejected or clamped — it just makes every song's score go deeply negative, which would look broken to a real user.
+- **No diversity mechanism.** `recommend_songs` is a pure top-k sort with no guard against the top 5 all coming from the same genre or artist.
+- **Still a small catalog.** 18 songs is enough to show real patterns (and real bias), but it's nowhere near enough to represent real musical taste — several genres (hip-hop, classical, metal, folk, R&B, blues, country, EDM) only have one song each, so there's no genuine competition within those genres yet.
+- **No understanding of lyrics, language, or audio itself** — everything is driven by hand-labeled metadata (genre, mood, energy, etc.), not the actual sound or content of a song.
 
-Examples:
-
-- It only works on a tiny catalog
-- It does not understand lyrics or language
-- It might over favor one genre or mood
-
-You will go deeper on this in your model card.
-
-Loaded songs: 10
-
-Top Recommendations for 'High-Energy Pop' {'genre': 'pop', 'mood': 'happy', 'energy': 0.9}
-==================================================
-1. Sunrise City - Neon Echo (Score: 4.76)
-     - genre match (+1.0)
-     - mood match (+1.0)
-     - energy similarity (+2.76)
-
-2. Gym Hero - Max Pulse (Score: 3.91)
-     - genre match (+1.0)
-     - energy similarity (+2.91)
-
-3. Rooftop Lights - Indigo Parade (Score: 3.58)
-     - mood match (+1.0)
-     - energy similarity (+2.58)
-
-4. Storm Runner - Voltline (Score: 2.97)
-     - energy similarity (+2.97)
-
-5. Night Drive Loop - Neon Echo (Score: 2.55)
-     - energy similarity (+2.55)
-
-
-Top Recommendations for 'Chill Lofi' {'genre': 'lofi', 'mood': 'chill', 'energy': 0.35, 'likes_acoustic': True}
-==================================================
-1. Library Rain - Paper Lanterns (Score: 5.50)
-     - genre match (+1.0)
-     - mood match (+1.0)
-     - energy similarity (+3.00)
-     - acoustic match (+0.5)
-
-2. Midnight Coding - LoRoom (Score: 5.29)
-     - genre match (+1.0)
-     - mood match (+1.0)
-     - energy similarity (+2.79)
-     - acoustic match (+0.5)
-
-3. Focus Flow - LoRoom (Score: 4.35)
-     - genre match (+1.0)
-     - energy similarity (+2.85)
-     - acoustic match (+0.5)
-
-4. Spacewalk Thoughts - Orbit Bloom (Score: 4.29)
-     - mood match (+1.0)
-     - energy similarity (+2.79)
-     - acoustic match (+0.5)
-
-5. Coffee Shop Stories - Slow Stereo (Score: 3.44)
-     - energy similarity (+2.94)
-     - acoustic match (+0.5)
-
-
-Top Recommendations for 'Deep Intense Rock' {'genre': 'rock', 'mood': 'intense', 'energy': 0.9}
-==================================================
-1. Storm Runner - Voltline (Score: 4.97)
-     - genre match (+1.0)
-     - mood match (+1.0)
-     - energy similarity (+2.97)
-
-2. Gym Hero - Max Pulse (Score: 3.91)
-     - mood match (+1.0)
-     - energy similarity (+2.91)
-
-3. Sunrise City - Neon Echo (Score: 2.76)
-     - energy similarity (+2.76)
-
-4. Rooftop Lights - Indigo Parade (Score: 2.58)
-     - energy similarity (+2.58)
-
-5. Night Drive Loop - Neon Echo (Score: 2.55)
-     - energy similarity (+2.55)
-
-
-Top Recommendations for 'Conflicting Energy/Mood' {'genre': 'pop', 'mood': 'sad', 'energy': 0.9}
-==================================================
-1. Gym Hero - Max Pulse (Score: 3.91)
-     - genre match (+1.0)
-     - energy similarity (+2.91)
-
-2. Sunrise City - Neon Echo (Score: 3.76)
-     - genre match (+1.0)
-     - energy similarity (+2.76)
-
-3. Storm Runner - Voltline (Score: 2.97)
-     - energy similarity (+2.97)
-
-4. Rooftop Lights - Indigo Parade (Score: 2.58)
-     - energy similarity (+2.58)
-
-5. Night Drive Loop - Neon Echo (Score: 2.55)
-     - energy similarity (+2.55)
-
-
-Top Recommendations for 'Nonexistent Genre' {'genre': 'death metal', 'mood': 'happy', 'energy': 0.5}
-==================================================
-1. Rooftop Lights - Indigo Parade (Score: 3.22)
-     - mood match (+1.0)
-     - energy similarity (+2.22)
-
-2. Sunrise City - Neon Echo (Score: 3.04)
-     - mood match (+1.0)
-     - energy similarity (+2.04)
-
-3. Midnight Coding - LoRoom (Score: 2.76)
-     - energy similarity (+2.76)
-
-4. Focus Flow - LoRoom (Score: 2.70)
-     - energy similarity (+2.70)
-
-5. Coffee Shop Stories - Slow Stereo (Score: 2.61)
-     - energy similarity (+2.61)
-
-
-Top Recommendations for 'Acoustic Headbanger' {'genre': 'rock', 'mood': 'intense', 'energy': 1.0, 'likes_acoustic': True}
-==================================================
-1. Storm Runner - Voltline (Score: 4.73)
-     - genre match (+1.0)
-     - mood match (+1.0)
-     - energy similarity (+2.73)
-
-2. Gym Hero - Max Pulse (Score: 3.79)
-     - mood match (+1.0)
-     - energy similarity (+2.79)
-
-3. Sunrise City - Neon Echo (Score: 2.46)
-     - energy similarity (+2.46)
-
-4. Rooftop Lights - Indigo Parade (Score: 2.28)
-     - energy similarity (+2.28)
-
-5. Night Drive Loop - Neon Echo (Score: 2.25)
-     - energy similarity (+2.25)
-
-
-Top Recommendations for 'Empty Preferences' {}
-==================================================
-1. Sunrise City - Neon Echo (Score: 0.00)
-     - no matching preferences
-
-2. Midnight Coding - LoRoom (Score: 0.00)
-     - no matching preferences
-
-3. Storm Runner - Voltline (Score: 0.00)
-     - no matching preferences
-
-4. Library Rain - Paper Lanterns (Score: 0.00)
-     - no matching preferences
-
-5. Gym Hero - Max Pulse (Score: 0.00)
-     - no matching preferences
-
-
-Top Recommendations for 'Out-of-Range Energy' {'genre': 'pop', 'mood': 'happy', 'energy': 5.0}
-==================================================
-1. Sunrise City - Neon Echo (Score: -7.54)
-     - genre match (+1.0)
-     - mood match (+1.0)
-     - energy similarity (+-9.54)
-
-2. Gym Hero - Max Pulse (Score: -8.21)
-     - genre match (+1.0)
-     - energy similarity (+-9.21)
-
-3. Rooftop Lights - Indigo Parade (Score: -8.72)
-     - mood match (+1.0)
-     - energy similarity (+-9.72)
-
-4. Storm Runner - Voltline (Score: -9.27)
-     - energy similarity (+-9.27)
-
-5. Night Drive Loop - Neon Echo (Score: -9.75)
-     - energy similarity (+-9.75)
+Go deeper on this in `model_card.md`.
 
 ---
 
