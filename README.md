@@ -127,7 +127,7 @@ Top Recommendations
 
 5. Storm Runner - Voltline (Score: 1.33)
      - energy similarity (+1.33)
-     
+
 ```
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
@@ -142,6 +142,182 @@ Use this section to document the experiments you ran. For example:
 - What happened when you added tempo or valence to the score
 - How did your system behave for different types of users
 
+Loaded songs: 10
+
+Top Recommendations for 'High-Energy Pop' {'genre': 'pop', 'mood': 'happy', 'energy': 0.9}
+==================================================
+1. Sunrise City - Neon Echo (Score: 4.38)
+     - genre match (+2.0)
+     - mood match (+1.0)
+     - energy similarity (+1.38)
+
+2. Gym Hero - Max Pulse (Score: 3.46)
+     - genre match (+2.0)
+     - energy similarity (+1.46)
+
+3. Rooftop Lights - Indigo Parade (Score: 2.29)
+     - mood match (+1.0)
+     - energy similarity (+1.29)
+
+4. Storm Runner - Voltline (Score: 1.48)
+     - energy similarity (+1.48)
+
+5. Night Drive Loop - Neon Echo (Score: 1.27)
+     - energy similarity (+1.27)
+
+
+Top Recommendations for 'Chill Lofi' {'genre': 'lofi', 'mood': 'chill', 'energy': 0.35, 'likes_acoustic': True}
+==================================================
+1. Library Rain - Paper Lanterns (Score: 5.00)
+     - genre match (+2.0)
+     - mood match (+1.0)
+     - energy similarity (+1.50)
+     - acoustic match (+0.5)
+
+2. Midnight Coding - LoRoom (Score: 4.89)
+     - genre match (+2.0)
+     - mood match (+1.0)
+     - energy similarity (+1.40)
+     - acoustic match (+0.5)
+
+3. Focus Flow - LoRoom (Score: 3.92)
+     - genre match (+2.0)
+     - energy similarity (+1.42)
+     - acoustic match (+0.5)
+
+4. Spacewalk Thoughts - Orbit Bloom (Score: 2.90)
+     - mood match (+1.0)
+     - energy similarity (+1.40)
+     - acoustic match (+0.5)
+
+5. Coffee Shop Stories - Slow Stereo (Score: 1.97)
+     - energy similarity (+1.47)
+     - acoustic match (+0.5)
+
+
+Top Recommendations for 'Deep Intense Rock' {'genre': 'rock', 'mood': 'intense', 'energy': 0.9}
+==================================================
+1. Storm Runner - Voltline (Score: 4.48)
+     - genre match (+2.0)
+     - mood match (+1.0)
+     - energy similarity (+1.48)
+
+2. Gym Hero - Max Pulse (Score: 2.46)
+     - mood match (+1.0)
+     - energy similarity (+1.46)
+
+3. Sunrise City - Neon Echo (Score: 1.38)
+     - energy similarity (+1.38)
+
+4. Rooftop Lights - Indigo Parade (Score: 1.29)
+     - energy similarity (+1.29)
+
+5. Night Drive Loop - Neon Echo (Score: 1.27)
+     - energy similarity (+1.27)
+
+
+Top Recommendations for 'Conflicting Energy/Mood' {'genre': 'pop', 'mood': 'sad', 'energy': 0.9}
+==================================================
+1. Gym Hero - Max Pulse (Score: 3.46)
+     - genre match (+2.0)
+     - energy similarity (+1.46)
+
+2. Sunrise City - Neon Echo (Score: 3.38)
+     - genre match (+2.0)
+     - energy similarity (+1.38)
+
+3. Storm Runner - Voltline (Score: 1.48)
+     - energy similarity (+1.48)
+
+4. Rooftop Lights - Indigo Parade (Score: 1.29)
+     - energy similarity (+1.29)
+
+5. Night Drive Loop - Neon Echo (Score: 1.27)
+     - energy similarity (+1.27)
+
+
+Top Recommendations for 'Nonexistent Genre' {'genre': 'death metal', 'mood': 'happy', 'energy': 0.5}
+==================================================
+1. Rooftop Lights - Indigo Parade (Score: 2.11)
+     - mood match (+1.0)
+     - energy similarity (+1.11)
+
+2. Sunrise City - Neon Echo (Score: 2.02)
+     - mood match (+1.0)
+     - energy similarity (+1.02)
+
+3. Midnight Coding - LoRoom (Score: 1.38)
+     - energy similarity (+1.38)
+
+4. Focus Flow - LoRoom (Score: 1.35)
+     - energy similarity (+1.35)
+
+5. Coffee Shop Stories - Slow Stereo (Score: 1.30)
+     - energy similarity (+1.30)
+
+
+Top Recommendations for 'Acoustic Headbanger' {'genre': 'rock', 'mood': 'intense', 'energy': 1.0, 'likes_acoustic': True}
+==================================================
+1. Storm Runner - Voltline (Score: 4.37)
+     - genre match (+2.0)
+     - mood match (+1.0)
+     - energy similarity (+1.36)
+
+2. Gym Hero - Max Pulse (Score: 2.40)
+     - mood match (+1.0)
+     - energy similarity (+1.40)
+
+3. Sunrise City - Neon Echo (Score: 1.23)
+     - energy similarity (+1.23)
+
+4. Rooftop Lights - Indigo Parade (Score: 1.14)
+     - energy similarity (+1.14)
+
+5. Midnight Coding - LoRoom (Score: 1.13)
+     - energy similarity (+0.63)
+     - acoustic match (+0.5)
+
+
+Top Recommendations for 'Empty Preferences' {}
+==================================================
+1. Sunrise City - Neon Echo (Score: 0.00)
+     - no matching preferences
+
+2. Midnight Coding - LoRoom (Score: 0.00)
+     - no matching preferences
+
+3. Storm Runner - Voltline (Score: 0.00)
+     - no matching preferences
+
+4. Library Rain - Paper Lanterns (Score: 0.00)
+     - no matching preferences
+
+5. Gym Hero - Max Pulse (Score: 0.00)
+     - no matching preferences
+
+
+Top Recommendations for 'Out-of-Range Energy' {'genre': 'pop', 'mood': 'happy', 'energy': 5.0}
+==================================================
+1. Sunrise City - Neon Echo (Score: -1.77)
+     - genre match (+2.0)
+     - mood match (+1.0)
+     - energy similarity (+-4.77)
+
+2. Gym Hero - Max Pulse (Score: -2.61)
+     - genre match (+2.0)
+     - energy similarity (+-4.61)
+
+3. Rooftop Lights - Indigo Parade (Score: -3.86)
+     - mood match (+1.0)
+     - energy similarity (+-4.86)
+
+4. Storm Runner - Voltline (Score: -4.63)
+     - energy similarity (+-4.63)
+
+5. Night Drive Loop - Neon Echo (Score: -4.88)
+     - energy similarity (+-4.88)
+
+
 ---
 
 ## Limitations and Risks
@@ -155,6 +331,180 @@ Examples:
 - It might over favor one genre or mood
 
 You will go deeper on this in your model card.
+
+Loaded songs: 10
+
+Top Recommendations for 'High-Energy Pop' {'genre': 'pop', 'mood': 'happy', 'energy': 0.9}
+==================================================
+1. Sunrise City - Neon Echo (Score: 4.76)
+     - genre match (+1.0)
+     - mood match (+1.0)
+     - energy similarity (+2.76)
+
+2. Gym Hero - Max Pulse (Score: 3.91)
+     - genre match (+1.0)
+     - energy similarity (+2.91)
+
+3. Rooftop Lights - Indigo Parade (Score: 3.58)
+     - mood match (+1.0)
+     - energy similarity (+2.58)
+
+4. Storm Runner - Voltline (Score: 2.97)
+     - energy similarity (+2.97)
+
+5. Night Drive Loop - Neon Echo (Score: 2.55)
+     - energy similarity (+2.55)
+
+
+Top Recommendations for 'Chill Lofi' {'genre': 'lofi', 'mood': 'chill', 'energy': 0.35, 'likes_acoustic': True}
+==================================================
+1. Library Rain - Paper Lanterns (Score: 5.50)
+     - genre match (+1.0)
+     - mood match (+1.0)
+     - energy similarity (+3.00)
+     - acoustic match (+0.5)
+
+2. Midnight Coding - LoRoom (Score: 5.29)
+     - genre match (+1.0)
+     - mood match (+1.0)
+     - energy similarity (+2.79)
+     - acoustic match (+0.5)
+
+3. Focus Flow - LoRoom (Score: 4.35)
+     - genre match (+1.0)
+     - energy similarity (+2.85)
+     - acoustic match (+0.5)
+
+4. Spacewalk Thoughts - Orbit Bloom (Score: 4.29)
+     - mood match (+1.0)
+     - energy similarity (+2.79)
+     - acoustic match (+0.5)
+
+5. Coffee Shop Stories - Slow Stereo (Score: 3.44)
+     - energy similarity (+2.94)
+     - acoustic match (+0.5)
+
+
+Top Recommendations for 'Deep Intense Rock' {'genre': 'rock', 'mood': 'intense', 'energy': 0.9}
+==================================================
+1. Storm Runner - Voltline (Score: 4.97)
+     - genre match (+1.0)
+     - mood match (+1.0)
+     - energy similarity (+2.97)
+
+2. Gym Hero - Max Pulse (Score: 3.91)
+     - mood match (+1.0)
+     - energy similarity (+2.91)
+
+3. Sunrise City - Neon Echo (Score: 2.76)
+     - energy similarity (+2.76)
+
+4. Rooftop Lights - Indigo Parade (Score: 2.58)
+     - energy similarity (+2.58)
+
+5. Night Drive Loop - Neon Echo (Score: 2.55)
+     - energy similarity (+2.55)
+
+
+Top Recommendations for 'Conflicting Energy/Mood' {'genre': 'pop', 'mood': 'sad', 'energy': 0.9}
+==================================================
+1. Gym Hero - Max Pulse (Score: 3.91)
+     - genre match (+1.0)
+     - energy similarity (+2.91)
+
+2. Sunrise City - Neon Echo (Score: 3.76)
+     - genre match (+1.0)
+     - energy similarity (+2.76)
+
+3. Storm Runner - Voltline (Score: 2.97)
+     - energy similarity (+2.97)
+
+4. Rooftop Lights - Indigo Parade (Score: 2.58)
+     - energy similarity (+2.58)
+
+5. Night Drive Loop - Neon Echo (Score: 2.55)
+     - energy similarity (+2.55)
+
+
+Top Recommendations for 'Nonexistent Genre' {'genre': 'death metal', 'mood': 'happy', 'energy': 0.5}
+==================================================
+1. Rooftop Lights - Indigo Parade (Score: 3.22)
+     - mood match (+1.0)
+     - energy similarity (+2.22)
+
+2. Sunrise City - Neon Echo (Score: 3.04)
+     - mood match (+1.0)
+     - energy similarity (+2.04)
+
+3. Midnight Coding - LoRoom (Score: 2.76)
+     - energy similarity (+2.76)
+
+4. Focus Flow - LoRoom (Score: 2.70)
+     - energy similarity (+2.70)
+
+5. Coffee Shop Stories - Slow Stereo (Score: 2.61)
+     - energy similarity (+2.61)
+
+
+Top Recommendations for 'Acoustic Headbanger' {'genre': 'rock', 'mood': 'intense', 'energy': 1.0, 'likes_acoustic': True}
+==================================================
+1. Storm Runner - Voltline (Score: 4.73)
+     - genre match (+1.0)
+     - mood match (+1.0)
+     - energy similarity (+2.73)
+
+2. Gym Hero - Max Pulse (Score: 3.79)
+     - mood match (+1.0)
+     - energy similarity (+2.79)
+
+3. Sunrise City - Neon Echo (Score: 2.46)
+     - energy similarity (+2.46)
+
+4. Rooftop Lights - Indigo Parade (Score: 2.28)
+     - energy similarity (+2.28)
+
+5. Night Drive Loop - Neon Echo (Score: 2.25)
+     - energy similarity (+2.25)
+
+
+Top Recommendations for 'Empty Preferences' {}
+==================================================
+1. Sunrise City - Neon Echo (Score: 0.00)
+     - no matching preferences
+
+2. Midnight Coding - LoRoom (Score: 0.00)
+     - no matching preferences
+
+3. Storm Runner - Voltline (Score: 0.00)
+     - no matching preferences
+
+4. Library Rain - Paper Lanterns (Score: 0.00)
+     - no matching preferences
+
+5. Gym Hero - Max Pulse (Score: 0.00)
+     - no matching preferences
+
+
+Top Recommendations for 'Out-of-Range Energy' {'genre': 'pop', 'mood': 'happy', 'energy': 5.0}
+==================================================
+1. Sunrise City - Neon Echo (Score: -7.54)
+     - genre match (+1.0)
+     - mood match (+1.0)
+     - energy similarity (+-9.54)
+
+2. Gym Hero - Max Pulse (Score: -8.21)
+     - genre match (+1.0)
+     - energy similarity (+-9.21)
+
+3. Rooftop Lights - Indigo Parade (Score: -8.72)
+     - mood match (+1.0)
+     - energy similarity (+-9.72)
+
+4. Storm Runner - Voltline (Score: -9.27)
+     - energy similarity (+-9.27)
+
+5. Night Drive Loop - Neon Echo (Score: -9.75)
+     - energy similarity (+-9.75)
 
 ---
 
